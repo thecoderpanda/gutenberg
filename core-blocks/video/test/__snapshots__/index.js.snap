@@ -4,6 +4,7 @@ exports[`core/video block edit matches snapshot 1`] = `
 <div
   class="components-placeholder editor-media-placeholder wp-block-video"
 >
+   
   <div
     class="components-placeholder__label"
   >

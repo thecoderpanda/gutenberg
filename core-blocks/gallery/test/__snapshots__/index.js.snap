@@ -4,6 +4,7 @@ exports[`core/gallery block edit matches snapshot 1`] = `
 <div
   class="components-placeholder editor-media-placeholder wp-block-gallery"
 >
+   
   <div
     class="components-placeholder__label"
   >
