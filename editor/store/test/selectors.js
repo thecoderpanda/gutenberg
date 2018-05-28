@@ -2917,7 +2917,7 @@ describe( 'selectors', () => {
 				},
 				blockListSettings: {
 					block1: {
-						supportedBlocks: [ 'core/test-block-c' ],
+						allowedBlocks: [ 'core/test-block-c' ],
 					},
 				},
 				settings: {},
@@ -2936,7 +2936,7 @@ describe( 'selectors', () => {
 				},
 				blockListSettings: {
 					block1: {
-						supportedBlocks: [ 'core/test-block-b' ],
+						allowedBlocks: [ 'core/test-block-b' ],
 					},
 				},
 				settings: {},
@@ -2955,7 +2955,7 @@ describe( 'selectors', () => {
 				},
 				blockListSettings: {
 					block1: {
-						supportedBlocks: [],
+						allowedBlocks: [],
 					},
 				},
 				settings: {},
