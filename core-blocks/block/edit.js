@@ -10,7 +10,7 @@ import { Component, Fragment, compose } from '@wordpress/element';
 import { Placeholder, Spinner, Disabled } from '@wordpress/components';
 import { withSelect, withDispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
-import { BlockEdit } from '@wordpress/editor';
+import { BlockEdit, withBlockEditContext } from '@wordpress/editor';
 
 /**
  * Internal dependencies
@@ -86,7 +86,7 @@ class SharedBlockEdit extends Component {
 	}
 
 	render() {
-		const { isSelected, sharedBlock, block, isFetching, isSaving } = this.props;
+		const { isSelected, sharedBlock, block, isFetching, isSaving, renderBlockMenu } = this.props;
 		const { isEditing, title, changedAttributes } = this.state;
 
 		if ( ! sharedBlock && isFetching ) {
@@ -102,6 +102,7 @@ class SharedBlockEdit extends Component {
 				{ ...this.props }
 				isSelected={ isEditing && isSelected }
 				id={ block.uid }
+				renderBlockMenu={ renderBlockMenu }
 				name={ block.name }
 				attributes={ { ...block.attributes, ...changedAttributes } }
 				setAttributes={ isEditing ? this.setAttributes : noop }
@@ -133,6 +134,10 @@ class SharedBlockEdit extends Component {
 }
 
 export default compose( [
+	withBlockEditContext( ( context ) => {
+		const { renderBlockMenu } = context;
+		return { renderBlockMenu };
+	} ),
 	withSelect( ( select, ownProps ) => {
 		const {
 			getSharedBlock,
