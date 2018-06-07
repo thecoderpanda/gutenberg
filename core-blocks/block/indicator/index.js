@@ -10,6 +10,7 @@ import { __, sprintf } from '@wordpress/i18n';
 import './style.scss';
 
 function SharedBlockIndicator( { title } ) {
+	// translators: %s: title/name of the shared block
 	return (
 		<Tooltip text={ sprintf( __( 'Shared Block: %s' ), title ) }>
 			<span className="shared-block-indicator">
