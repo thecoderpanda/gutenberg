@@ -104,11 +104,11 @@
 }
 
 .editor-block-list__layout {
-	// make room in the main content column for the side UI
-	// the side UI uses negative margins to position itself so as to not affect the block width
+	// Make room in the main content column for the side UI.
+	// The side UI uses negative margins to position itself so as to not affect the block width.
 	@include break-small() {
-		padding-left: $block-side-ui-padding;
-		padding-right: $block-side-ui-padding;
+		padding-left: $block-side-ui-width + $block-padding + $block-side-ui-clearance + $block-side-ui-clearance;
+		padding-right: $block-side-ui-width + $block-padding + $block-side-ui-clearance + $block-side-ui-clearance;
 	}
 
 	// Don't add side padding for nested blocks, and compensate for block padding
@@ -222,14 +222,19 @@
 			transition: outline .1s linear;
 			pointer-events: none;
 
-			// show wider padding for top level blocks
-			right: -$parent-block-padding;
-			left: -$parent-block-padding;
 			top: -$block-padding;
 			bottom: -$block-padding;
+			right: -$block-padding;
+			left: -$block-padding;
+
+			// Show wider padding for top level blocks.
+			@include break-small() {
+				right: -$parent-block-padding;
+				left: -$parent-block-padding;
+			}
 		}
 
-		// show smaller padding for child blocks
+		// Show smaller padding for child blocks.
 		.editor-block-list__block-edit:before {
 			right: -$block-padding;
 			left: -$block-padding;
@@ -347,16 +352,25 @@
 	// Alignments
 	&[data-align="left"],
 	&[data-align="right"] {
-		// Without z-index, won't be clickable as "above" adjacent content
+		// Without z-index, won't be clickable as "above" adjacent content.
 		z-index: z-index( '.editor-block-list__block {core/image aligned left or right}' );
 		width: 100%;
 
-		// When images are floated, the block itself should collapse to zero height
+		// When images are floated, the block itself should collapse to zero height.
 		margin-bottom: 0;
+		height: 0;
 
-		// Hide block outline when an image is floated
-		&:before {
-			content: none;
+		// Hide block outline when an image is floated.
+		.editor-block-list__block-edit {
+
+			&:before {
+				content: none;
+			}
+		}
+
+		// The padding collapses, but the outline is still 1px to compensate for. 
+		.editor-block-contextual-toolbar {
+			margin-bottom: 1px;
 		}
 	}
 
@@ -433,6 +447,7 @@
 		> .editor-block-mover {
 			display: none;
 		}
+
 		@include break-wide() {
 			> .editor-block-mover {
 				display: block;
@@ -456,10 +471,10 @@
 			right: -1px;
 		}
 		
-		// compensate for main container padding, subtract border
+		// Compensate for main container padding and subtract border.
 		@include break-small() {
-			margin-left: -$block-side-ui-padding + 1px;
-			margin-right: -$block-side-ui-padding + 1px;
+			margin-left: -$block-side-ui-width - $block-padding - $block-side-ui-clearance - 1px;
+			margin-right: -$block-side-ui-width - $block-padding - $block-side-ui-clearance - 1px;
 		}
 
 		> .editor-block-list__block-edit {
@@ -471,7 +486,7 @@
 				margin-right: -$block-side-ui-padding - $block-padding;
 			}
 
-			// this explicitly sets the width of the block, to override the fit-content from the image block
+			// This explicitly sets the width of the block, to override the fit-content from the image block.
 			figure {
 				width: 100%;
 			}
@@ -815,7 +830,7 @@
 	border: 1px solid $light-gray-500;
 	border-right: none;
 
-	// this prevents floats from messing up the position
+	// This prevents floats from messing up the position.
 	position: absolute;
 	left: 0;
 
@@ -838,7 +853,11 @@
 	z-index: z-index( '.editor-block-list__breadcrumb' );
 
 	// Position in the top right of the border
-	right: -$block-parent-side-ui-clearance;
+	right: -$block-side-ui-clearance;
+
+	@include break-small() {
+		right: -$block-parent-side-ui-clearance;
+	}
 	top: 0;
 
 	// Nested
