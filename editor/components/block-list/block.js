@@ -414,6 +414,7 @@ export class BlockListBlock extends Component {
 			isEmptyDefaultBlock,
 			isPreviousBlockADefaultEmptyBlock,
 			hasSelectedInnerBlock,
+			templateLock,
 		} = this.props;
 		const isHovered = this.state.isHovered && ! isMultiSelecting;
 		const { name: blockName, isValid } = block;
@@ -504,6 +505,7 @@ export class BlockListBlock extends Component {
 						onDragEnd={ this.onDragEnd }
 						isDragging={ dragging }
 						elementId={ blockElementId }
+						draggable={ 'all' !== templateLock } // only in locking all moving blocks is totally impossible
 					/>
 				) }
 				{ shouldShowInsertionPoint && (
@@ -646,6 +648,7 @@ const applyWithSelect = withSelect( ( select, { uid, rootUID } ) => {
 		initialPosition: getSelectedBlocksInitialCaretPosition(),
 		isEmptyDefaultBlock: block && isUnmodifiedDefaultBlock( block ),
 		isPreviousBlockADefaultEmptyBlock: previousBlock && isUnmodifiedDefaultBlock( previousBlock ),
+		templateLock,
 		isLocked: !! templateLock,
 		previousBlockUid,
 		block,
