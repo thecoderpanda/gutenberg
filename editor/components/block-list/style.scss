@@ -659,11 +659,6 @@
 	height: $block-padding * 2; // Matches the whole empty space between two blocks
 	justify-content: center;
 
-	// Don't show the sibling inserter before the selected block.
-	.is-selected & {
-		display: none;
-	}
-
 	// Show a clickable plus.
 	.editor-block-list__insertion-point-button {
 		margin-top: -4px;
@@ -707,6 +702,11 @@
 	&.is-visible {
 		opacity: 1;
 	}
+}
+
+// Don't show the sibling inserter before the selected block.
+.edit-post-layout:not( .has-fixed-toolbar ) .is-selected .editor-block-list__insertion-point-inserter {
+	display: none;
 }
 
 .editor-block-list__block {
