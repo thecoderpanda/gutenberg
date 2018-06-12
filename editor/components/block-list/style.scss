@@ -146,8 +146,8 @@
 	// Space every block using margins instead of padding
 	// This allows margins to collapse, which gives a better representation of how it looks on the frontend
 	.editor-block-list__block-edit {
-		margin-top: $block-padding * 2;
-		margin-bottom: $block-padding * 2;
+		margin-top: $block-padding * 2 + 4px;
+		margin-bottom: $block-padding * 2 + 4px;
 	}
 
 	margin-bottom: $block-spacing;
@@ -532,8 +532,8 @@
 		top: -$block-padding - 1px;
 	}
 
-	&.is-selected > .editor-block-settings-menu,
-	&.is-selected > .editor-block-mover {
+	.edit-post-layout:not( .has-fixed-toolbar ) &.is-selected > .editor-block-settings-menu,
+	.edit-post-layout:not( .has-fixed-toolbar ) &.is-selected > .editor-block-mover {
 			top: $block-toolbar-height;
 	}
 
@@ -668,14 +668,19 @@
 .editor-block-list__insertion-point-inserter {
 	display: flex;
 	position: absolute;
-	top: 0;
 	bottom: auto;
 	left: 0;
 	right: 0;
-	height: $block-padding * 2; // Matches the whole empty space between two blocks
+	height: $block-padding * 2; // Matches the whole empty space between two blocks.
 	justify-content: center;
 
-	// Show a clickable plus
+	// Position above block.
+	top: -$block-padding;
+	.edit-post-layout:not( .has-fixed-toolbar ) .is-selected & {
+		top: $block-toolbar-height + 1px;
+	}
+
+	// Show a clickable plus.
 	.editor-block-list__insertion-point-button {
 		margin-top: -4px;
 		border-radius: 50%;
