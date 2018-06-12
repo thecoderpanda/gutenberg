@@ -143,19 +143,11 @@
 		padding-right: $block-padding + $block-side-ui-padding - 1px;
 	}
 
-	// Prevent collapsing margins @todo try and revisit this, it's conducive to theming to allow these to collapse
-	//padding-top: 1px;
-	//padding-bottom: 1px;
-
 	// Space every block using margins instead of padding
 	// This allows margins to collapse, which gives a better representation of how it looks on the frontend
 	.editor-block-list__block-edit {
-		margin-top: $block-padding;
-		margin-bottom: $block-padding;
-
-		// Prevent collapsing margins @todo try and revisit this, it's conducive to theming to allow these to collapse
-		//padding-top: 1px;
-		//padding-bottom: 1px;
+		margin-top: $block-padding * 2;
+		margin-bottom: $block-padding * 2;
 	}
 
 	margin-bottom: $block-spacing;
@@ -837,6 +829,7 @@
 /**
  * Hover label
  */
+ 
  .editor-block-list__breadcrumb {
 	position: absolute;
 	line-height: 1;
