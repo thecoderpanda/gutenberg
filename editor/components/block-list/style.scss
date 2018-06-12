@@ -852,7 +852,7 @@
 
 	// Position in the top right of the border
 	right: -$block-parent-side-ui-clearance;
-	top: 0;
+	top: -$block-padding - 1px;
 
 	// Nested
 	.editor-block-list__block-edit & {
