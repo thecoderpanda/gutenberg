@@ -121,9 +121,9 @@
 		margin-left: -$block-padding;
 		margin-right: -$block-padding;
 
-		// compensate for block padding and collapsing margins vertically
-		margin-top: -$block-padding + 1px;
-		margin-top: -$block-padding + 1px;
+		// compensate for block padding vertically
+		margin-top: -$block-padding;
+		margin-top: -$block-padding;
 	}
 }
 
@@ -144,8 +144,8 @@
 	}
 
 	// Prevent collapsing margins @todo try and revisit this, it's conducive to theming to allow these to collapse
-	padding-top: 1px;
-	padding-bottom: 1px;
+	//padding-top: 1px;
+	//padding-bottom: 1px;
 
 	// Space every block using margins instead of padding
 	// This allows margins to collapse, which gives a better representation of how it looks on the frontend
@@ -154,8 +154,8 @@
 		margin-bottom: $block-padding;
 
 		// Prevent collapsing margins @todo try and revisit this, it's conducive to theming to allow these to collapse
-		padding-top: 1px;
-		padding-bottom: 1px;
+		//padding-top: 1px;
+		//padding-bottom: 1px;
 	}
 
 	margin-bottom: $block-spacing;
@@ -211,7 +211,8 @@
 	/**
 	 * Block outline layout
 	 */
-	.editor-block-list__block-edit {
+
+	 .editor-block-list__block-edit {
 		position: relative;
 
 		&:before {
@@ -247,6 +248,10 @@
 
 		.is-dark-theme & {
 			outline-color: $light-opacity-light-500;
+		}
+
+		.edit-post-layout:not( .has-fixed-toolbar ) & {
+			top: $block-toolbar-height + 1px;
 		}
 	}
 
@@ -765,7 +770,7 @@
 		left: auto;
 		right: auto;
 		box-shadow: none;
-		margin-top: -$block-toolbar-height - 1px;
+		margin-top: -$block-toolbar-height - $block-padding - 1px;
 		margin-bottom: $block-padding + 1px;
 	}
 
@@ -786,8 +791,8 @@
 
 	@include break-small() {
 		// stack borders
-		margin-left: -$parent-block-padding - $block-side-ui-width - 1px;
-		margin-right: -$parent-block-padding - $block-side-ui-width - 1px;
+		margin-left: -$block-side-ui-width - 1px;
+		margin-right: -$block-side-ui-width - 1px;
 
 		// position toolbar for nested
 		.editor-block-list__block & {
